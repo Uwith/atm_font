@@ -43,7 +43,6 @@ export default {
 
   /*内边距*/
   padding: 4vw 8vw;
-
 }
 
 .input1 {

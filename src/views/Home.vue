@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="btn b1 mbl">
+    <div class="btn b1 mbl" @click="toBalance()">
       查询余额
     </div>
     <div class="btn b2 mbl">
@@ -29,8 +29,19 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  mounted() {
+// this.toBalance();
+  },
+  methods: {
+    toBalance() {
+      this.$router.push({
+        name: 'Balance',
+      })
+    },
+  }
 }
+
 </script>
 
 <style scoped>
