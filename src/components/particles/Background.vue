@@ -1,5 +1,5 @@
 <template>
-  <div style="min-height:730px;height: 98.5vh" class="">
+  <div style="min-height:730px;height: 100vh" class=" ">
     <!--  <div style="min-height:730px; height:960px" class="">-->
     <div id="background">
 
