@@ -1,21 +1,32 @@
 <template>
   <div id="app">
     <div class="bg">
-      <router-view/>
+      <Background/>
+      <router-view class="router-css"/>
     </div>
   </div>
 </template>
+<script>
+import Background from "@/components/particles/Background";
 
+export default {
+  name: "Main",
+  components: {Background}
+}
+
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
-.bg{
+
+* {
   margin: 0;
   padding: 0;
+  position: relative;
 }
+
 </style>
