@@ -8,10 +8,10 @@
       <p class="text">osidfoisuoifdusodufoijsodifuosaijfpoisfisuafdojfoisjdflsajofij
         fdiusoifjslidfuosaijfolsaiudfoi</p>
     </div>
-    <div class="btn b3">
+    <div class="btn b3 mbl " @click="toLogin()">
       注销
     </div>
-    <div class="btn b7">
+    <div class="btn b7 mbl" @click="toLanguage()">
       同意
     </div>
   </div>
@@ -20,6 +20,18 @@
 <script>
 export default {
   name: "Agreement",
+  methods: {
+    toLogin() {
+      this.$router.push({
+        name: 'Login',
+      })
+    },
+    toLanguage() {
+      this.$router.push({
+        name: 'Language',
+      })
+    }
+  }
 }
 </script>
 

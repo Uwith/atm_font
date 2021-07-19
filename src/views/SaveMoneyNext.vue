@@ -8,10 +8,10 @@
         <p class="" style="float:right;">{{ overMoney }}</p>
       </div>
     </div>
-    <div class="btn b3">
+    <div class="btn b3 mbl" @click="saveMoney()">
       结束放款
     </div>
-    <div class="btn b7">
+    <div class="btn b7 mbl " @click="toSaveMoney()">
       继续存款
     </div>
   </div>
@@ -23,6 +23,22 @@ export default {
   data() {
     return {
       overMoney: 152.55,
+    }
+  },
+  mounted() {
+    this.getOverMoney()
+  },
+  methods: {
+    toSaveMoney(overMoney) {
+
+      this.$router.push({
+        name: 'SaveMoney',
+      })
+    },
+    saveMoney() {
+
+    },
+    getOverMoney() {
     }
   }
 }

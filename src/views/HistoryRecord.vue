@@ -2,12 +2,12 @@
   <!--历史记录-->
   <div class="history">
     <div class="square">
-      <p class="title">请选择语言</p>
+
     </div>
-    <div class="btn b6">
+    <div class="btn b6 mbl">
       注销
     </div>
-    <div class="btn b7">
+    <div class="btn b7 mbl">
       同意
     </div>
   </div>
@@ -15,8 +15,7 @@
 
 <script>
 export default {
-  name: "History"
-
+  name: "HistoryRecord"
 }
 </script>
 

@@ -8,10 +8,10 @@
         <p class="" style="float:right;"> 7777.77</p>
       </div>
     </div>
-    <div class="btn b6">
+    <div class="btn b6 mbl" @click="toCancellation()">
       注销
     </div>
-    <div class="btn b7">
+    <div class="btn b7 mbl" @click="toHome()">
       返回首页
     </div>
   </div>
@@ -19,7 +19,19 @@
 
 <script>
 export default {
-  name: "Balance"
+  name: "Balance",
+  methods: {
+    toHome() {
+      this.$router.push({
+        name: "Home",
+      })
+    },
+    toCancellation() {
+      this.$router.push({
+        name: "Cancellation",
+      })
+    },
+  }
 }
 </script>
 

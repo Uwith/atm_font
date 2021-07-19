@@ -6,10 +6,9 @@
     </p>
     <el-input class="input1" v-model="username" prefix-icon="el-icon-user"></el-input>
     <el-input class="input2" v-model="password" prefix-icon="el-icon-key" show-password></el-input>
-    <el-button class="but"> 登录</el-button>
-    <a href="/register">
-      <el-button class="register"> 注册</el-button>
-    </a>
+    <el-button class="but" @click="toLanguage()"> 登录</el-button>
+    <el-button class="register" @click="toRegister()"> 注册</el-button>
+
   </div>
 
 </template>
@@ -22,6 +21,18 @@ export default {
       username: '',
       password: '',
     }
+  },
+  methods: {
+    toRegister() {
+      this.$router.push({
+        name: 'Register'
+      })
+    },
+    toLanguage() {
+      this.$router.push({
+        name: 'Language'
+      })
+    },
   }
 }
 </script>

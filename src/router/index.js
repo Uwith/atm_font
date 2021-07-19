@@ -11,12 +11,13 @@ import Balance from "@/views/Balance";
 import Agreement from "@/views/Agreement";
 import Background from "@/components/particles/Background";
 import Register from "@/views/Register";
+import HistoryRecord from "@/views/HistoryRecord";
 
 Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/',
+        path: '/home',
         name: 'Home',
         component: Home
     },
@@ -36,9 +37,9 @@ const routes = [
         component: Cancellation
     },
     {
-        path: '/history',
-        name: 'History',
-        component: History
+        path: '/historyRecord',
+        name: 'HistoryRecord',
+        component: HistoryRecord
     },
     {
         path: '/language',
@@ -46,7 +47,7 @@ const routes = [
         component: Language
     },
     {
-        path: '/login',
+        path: '/',
         name: 'Login',
         component: Login
     },
