@@ -9,20 +9,35 @@
     <el-button class="but" @click="toLanguage()"> 登录</el-button>
     <el-button class="register" @click="toRegister()"> 注册</el-button>
 
+    <el-input class="input1" v-model="user.cardNum" prefix-icon="el-icon-user"></el-input>
+    <el-input class="input2" v-model="user.cardPass" prefix-icon="el-icon-key" show-password></el-input>
+    <el-button class="but" @click="userLogin()"> 登录</el-button>
+    <a href="/register">
+      <el-button class="register"> 注册</el-button>
+    </a>
   </div>
 
 </template>
 
 <script>
+import {login} from "../api/login";
+
 export default {
   name: "Login",
   data() {
     return {
-      username: '',
-      password: '',
+      user: {
+        cardNum: '',
+        cardPass: ''
+      }
     }
   },
   methods: {
+    userLogin() {
+      login(this.user).then(res => {
+        alert(res.data.message)
+      })
+    },
     toRegister() {
       this.$router.push({
         name: 'Register'
@@ -54,6 +69,7 @@ export default {
 
   /*内边距*/
   padding: 4vw 8vw;
+
 }
 
 .input1 {
