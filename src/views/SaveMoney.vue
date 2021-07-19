@@ -4,7 +4,7 @@
     <div class="square">
       <p class="title">请放入现金</p>
       <div class="main-num ">
-        <el-input placeholder="请输入要存款金额" v-model="input">
+        <el-input placeholder="请输入要存款金额" v-model="money.cardBalance">
           <template slot="prepend">¥</template>
         </el-input>
 
@@ -22,28 +22,37 @@
 
 <script>
 
+import {doMoney} from "@/api/doMoney";
+
 export default {
   name: "SaveMoney",
   data() {
     return {
-      input: ''
+      money: {
+        cardBalance: '',
+        cardId: 111,
+        doType: 1
+      },
+
     }
   },
   methods: {
     toSaveMoneyNext() {
-      this.$router.push({
-        name: 'SaveMoneyNext',
-      })
+      if (this.money.cardBalance != 0) {
+        doMoney(this.money).then(res => {
+          if (res.data.success) {
+            this.$router.push({
+              name: 'SaveMoneyNext',
+            })
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+      } else {
+        this.$message.error("存入金额不能为空");
+      }
     },
     toHome() {
-      // 发送 POST 请求
-      axios({
-        method: 'get',
-        url: 'localhost:8080/atm/user/balance',
-        data: {
-          SaveMoney: 'input'
-        }
-      });
       this.$router.push({
         name: 'Home',
       })

@@ -14,35 +14,57 @@
     <div class="btn b3 mbl" @click="WithdrawMoney(500)">
       500
     </div>
-    <div class="btn b4 mbl" @click="WithdrawMoney(1000)">
+    <div class="btn b4 mbl" @click="toHome()" v-model="zdy">
+      返回
+    </div>
+    <div class="btn b5 mbl" @click="WithdrawMoney(1000)">
       1,000
     </div>
-    <div class="btn b5 mbl" @click="WithdrawMoney(2000)">
+    <div class="btn b6 mbl" @click="WithdrawMoney(2000)">
       2,000
     </div>
-    <div class="btn b6 mbl" @click="WithdrawMoney(5000)">
-      5,000
-    </div>
-    <div class="btn b7 mbl" @click="WithdrawMoney(10000)">
+    <div class="btn b7 mbl" @click="WithdrawMoney(5000)">
       10,000
     </div>
-    <div class="btn b8 mbl" @click="WithdrawMoney(this.zdy)" v-model="zdy">
-      自定义金额
-    </div>
+
+    <!--    <div class="btn b8 mbl" @click="WithdrawMoney(this.zdy)" v-model="zdy">-->
+    <!--      自定义金额-->
+    <!--    </div>-->
+
+
   </div>
 </template>
 
 <script>
+import {doMoney} from "@/api/doMoney";
+
 export default {
   name: "WithdrawMoney",
   data() {
     return {
-      zdy: 10
+      zdy: 10,
+      money: {
+        cardBalance: '',
+        cardId: 111,
+        doType: 2
+      },
     }
   },
   methods: {
-    WithdrawMoney() {
-
+    WithdrawMoney(inMoney) {
+      this.money.cardBalance = inMoney;
+      doMoney(this.money).then(res => {
+        if (res.data.success) {
+          this.$message.success("取款成功");
+        } else {
+          this.$message.error(res.data.message);
+        }
+      })
+    },
+    toHome() {
+      this.$router.push({
+        name: 'Home',
+      })
     }
   }
 }
