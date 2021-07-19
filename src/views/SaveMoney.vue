@@ -36,6 +36,14 @@ export default {
       })
     },
     toHome() {
+      // 发送 POST 请求
+      axios({
+        method: 'get',
+        url: 'localhost:8080/atm/user/balance',
+        data: {
+          SaveMoney: 'input'
+        }
+      });
       this.$router.push({
         name: 'Home',
       })
