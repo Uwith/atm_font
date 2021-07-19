@@ -6,10 +6,10 @@
         <p>确定要退出吗?</p>
       </div>
     </div>
-    <div class="btn b3 mbl">
+    <div class="btn b3 mbl" @click="toHome()">
       取消
     </div>
-    <div class="btn b7 mbl">
+    <div class="btn b7 mbl" @click="toLogin()">
       退出
     </div>
   </div>
@@ -17,7 +17,19 @@
 
 <script>
 export default {
-  name: "Cancellation"
+  name: "Cancellation",
+  methods: {
+    toHome() {
+      this.$router.push({
+        name: "Home",
+      })
+    },
+    toLogin() {
+      this.$router.push({
+        name: "Login",
+      })
+    }
+  }
 }
 </script>
 
