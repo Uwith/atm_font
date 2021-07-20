@@ -1,5 +1,5 @@
 <template>
-  <div style="min-height:730px;height: 100vh" class=" ">
+  <div class="BG">
     <!--  <div style="min-height:730px; height:960px" class="">-->
     <div id="background">
 
@@ -29,5 +29,10 @@ export default {
 </script>
 
 <style scoped>
+.BG {
+  min-height: 730px;
+  height: 100vh
+}
+
 @import "./style.css";
 </style>

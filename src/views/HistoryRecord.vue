@@ -21,11 +21,11 @@
         </el-table-column>
       </el-table>
     </div>
-    <div class="btn b6 mbl">
-      注销
-    </div>
-    <div class="btn b7 mbl">
-      同意
+    <!--    <div class="btn b6 mbl">-->
+    <!--      注销-->
+    <!--    </div>-->
+    <div class="btn b7 mbl" @click="toHome()">
+      返回
     </div>
   </div>
 </template>
@@ -53,8 +53,14 @@ export default {
         address: '上海市普陀区金沙江路 1516 弄'
       }]
     }
+  },
+  methods: {
+    toHome() {
+      this.$router.push({
+        name: 'Home',
+      })
+    }
   }
-
 }
 </script>
 
