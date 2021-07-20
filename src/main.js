@@ -5,7 +5,7 @@ import store from './store'
 import particles from 'particles.js'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import './css/style.css';
+import './css/public.css';
 import axios from 'axios';
 
 Vue.config.productionTip = false
