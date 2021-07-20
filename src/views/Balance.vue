@@ -8,9 +8,7 @@
         <p class="" style="float:right;"> {{ this.balance }}</p>
       </div>
     </div>
-    <!--    <div class="btn b6 mbl" @click="toCancellation()">-->
-    <!--      注销-->
-    <!--    </div>-->
+
     <div class="btn b7 mbl" @click="toHome()">
       返回首页
     </div>
