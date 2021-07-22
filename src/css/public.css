@@ -1,14 +1,15 @@
 .square {
+    /*大小*/
     width: 50vw;
     height: 54vh;
-    position: absolute;
+    /*相对定位*/
+    position: relative;
     top: 17vh;
     left: 20vw;
     /*  圆角*/
     border-radius: 2%;
     /*内边距*/
     padding: 3vw 5vw;
-
     margin: auto;
     /*毛玻璃背板*/
     background: rgba(255, 255, 255, .3);
@@ -17,14 +18,20 @@
 }
 
 .square ::before {
-    content: '';
-    position: absolute;
+    /*未知*/
+    /*content: '';*/
+    /*相对定位*/
+    position: relative;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    /*半透明滤镜*/
+    /*-webkit-filter: blur(20px);*/
     filter: blur(20px);
+    /*层次*/
     z-index: -1;
+    /*边框*/
     margin: -30px;
 }
 
@@ -132,7 +139,7 @@
 }
 
 .mbl ::before {
-    content: '';
+    /*content: '';*/
     position: absolute;
     top: 0;
     bottom: 0;
