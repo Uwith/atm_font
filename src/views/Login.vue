@@ -4,8 +4,8 @@
     <p class="title">
       Login
     </p>
-    <el-input class="input1" v-model="user.cardNum" prefix-icon="el-icon-user"></el-input>
-    <el-input class="input2" v-model="user.cardPass" prefix-icon="el-icon-key" show-password></el-input>
+    <el-input class="input1" v-model="user.userkeyCustomer" prefix-icon="el-icon-user"></el-input>
+    <el-input class="input2" v-model="user.passkeyCustomer" prefix-icon="el-icon-key" show-password></el-input>
     <el-button class="but" @click="userLogin()"> 登录</el-button>
     <el-button class="register" @click="toRegister()"> 注册</el-button>
   </div>
@@ -14,21 +14,27 @@
 
 <script>
 
-import {login} from "@/api/login";
-
 export default {
   name: "Login",
   data() {
     return {
       user: {
-        cardNum: '',
-        cardPass: ''
+        userkeyCustomer: '',
+        passkeyCustomer: ''
       }
     }
   },
   methods: {
     userLogin() {
-      login(this.user).then(res => {
+      let vm = this;
+      vm.$post(vm.API.API_URL_LOGIN, {
+        userkeyCustomer: this.user.userkeyCustomer,
+        passkeyCustomer: this.user.passkeyCustomer
+      }).then(res => {
+        // Storage.Session.set('token',res.data.data)
+        // 存入token
+        sessionStorage.setItem('token', res.data.data)
+        console.log(sessionStorage.getItem('token'))
         if (res.data.success) {
           this.toLanguage()
         } else {

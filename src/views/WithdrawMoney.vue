@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {doMoney} from "@/api/doMoney";
+import {doMoney} from "@/api/do-money";
 
 export default {
   name: "WithdrawMoney",
@@ -44,16 +44,23 @@ export default {
     return {
       zdy: 10,
       money: {
-        cardBalance: '',
-        cardId: 111,
-        doType: 2
+        balanceCard: '',
+        idCard: 5221,
       },
     }
   },
   methods: {
     WithdrawMoney(inMoney) {
-      this.money.cardBalance = inMoney;
-      doMoney(this.money).then(res => {
+      this.money.balanceCard = inMoney;
+      let vm = this;
+      vm.$post(vm.API.API_URL_DO_MONEY, {
+        money: {
+          idCard: this.money.idCard,
+          balanceCard: this.money.balanceCard,
+        },
+        doType: 2
+      })
+      doMoney(this.money, this.doType).then(res => {
         if (res.data.success) {
           this.$message.success("取款成功");
         } else {

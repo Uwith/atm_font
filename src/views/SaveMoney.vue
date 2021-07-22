@@ -4,7 +4,7 @@
     <div class="square">
       <p class="title">请放入现金</p>
       <div class="main-num ">
-        <el-input placeholder="请输入要存款金额" v-model="money.cardBalance">
+        <el-input placeholder="请输入要存款金额" v-model="money.balanceCard">
           <template slot="prepend">¥</template>
         </el-input>
 
@@ -22,24 +22,27 @@
 
 <script>
 
-import {doMoney} from "@/api/doMoney";
-
 export default {
   name: "SaveMoney",
   data() {
     return {
       money: {
-        cardBalance: '',
-        cardId: 111,
-        doType: 1
+        balanceCard: '',
+        idCard: 5221,
       },
-
     }
   },
   methods: {
     toSaveMoneyNext() {
       if (this.money.cardBalance != 0) {
-        doMoney(this.money).then(res => {
+        let vm = this;
+        vm.$post(vm.API.API_URL_DO_MONEY, {
+          money: {
+            idCard: this.money.idCard,
+            balanceCard: this.money.balanceCard,
+          },
+          doType: 1
+        }).then(res => {
           if (res.data.success) {
             this.$router.push({
               name: 'SaveMoneyNext',

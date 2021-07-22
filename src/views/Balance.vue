@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import {balance} from "@/api/balance";
 
 export default {
   name: "Balance",
@@ -24,7 +23,6 @@ export default {
     return {
       balance: '',
       // todo vuex id
-      id: '111'
     }
   },
   mounted() {
@@ -32,10 +30,21 @@ export default {
   },
   methods: {
     getBalance() {
+      var vm = this;
+      // var userId = vm.Storage.Session.get("User").id;
+      var userId = 5221
+      if (userId) {
+        vm.$post(vm.API.API_URL_BALANCER, {
+          userId: userId
+        }).then(res => {
+          console.log(res)
+          this.balance = res.data;
+        })
+      }
+
       // todo vuex id
-      balance(this.id).then(res => {
-        this.balance = res.data.data.cardBalance;
-      })
+
+
     },
     toHome() {
       this.$router.push({
