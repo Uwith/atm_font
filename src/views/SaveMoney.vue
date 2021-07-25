@@ -28,21 +28,18 @@ export default {
     return {
       money: {
         balanceCard: '',
-        idCard: 5221,
+        idCard: 1627010720508389,
+        doType: 1
       },
+      doType: 1,
     }
   },
   methods: {
     toSaveMoneyNext() {
       if (this.money.cardBalance != 0) {
         let vm = this;
-        vm.$post(vm.API.API_URL_DO_MONEY, {
-          money: {
-            idCard: this.money.idCard,
-            balanceCard: this.money.balanceCard,
-          },
-          doType: 1
-        }).then(res => {
+        // let url = vm.API.API_URL_DO_MONEY+"?doType=" + this.doType;
+        vm.$post(vm.API.API_URL_DO_MONEY, this.money).then(res => {
           if (res.data.success) {
             this.$router.push({
               name: 'SaveMoneyNext',

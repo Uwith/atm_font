@@ -97,16 +97,16 @@ export default {
   post(url, data) {
     return axios({
       method: 'post',
-      url,
+      url: url,
       // data: qs.stringify(data),
-      data,
+      data: data,
       timeout: 15000,
       headers: {
         // 'X-Requested-With': 'XMLHttpRequest',
         // 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Origin': '*',
         'content-type': 'application/json;charset=UTF-8',
-        'Authentication': sessionStorage.getItem('token')
+        'Authentication': "" + sessionStorage.getItem('token')
       }
     }).then(
       (response) => {
