@@ -30,21 +30,15 @@ export default {
   },
   methods: {
     getBalance() {
-      var vm = this;
-      // var userId = vm.Storage.Session.get("User").id;
-      var userId = 5221
-      if (userId) {
-        vm.$post(vm.API.API_URL_BALANCER, {
-          userId: userId
-        }).then(res => {
+      let vm = this;
+      let cardId = sessionStorage.getItem('cardId')
+      if (cardId) {
+        vm.$post(vm.API.API_URL_BALANCER + "?cardId=" + cardId).then(res => {
           console.log(res)
-          this.balance = res.data;
+          this.balance = res.data.data;
         })
       }
-
       // todo vuex id
-
-
     },
     toHome() {
       this.$router.push({

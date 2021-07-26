@@ -27,4 +27,22 @@ export default {
    * @param cardId
    */
   API_URL_CARD_LOG: v1 + "allQuery/cardLog",
+  /**
+   * 查询 用户所拥有的卡
+   * post
+   * @param cardId
+   */
+  API_URL_CARD_INFO: v1 + "allQuery/cardInfo",
+  /**
+   * 注册 新卡
+   * post
+   * @param cardId
+   */
+  API_URL_INSERT_CARD: v1 + "cardOperation/insertCard",
+  /**
+   * 登录 卡
+   * post
+   * @param cardId
+   */
+  API_URL_CARD_LOGIN: v1 + "cardOperation/cardLogin",
 }

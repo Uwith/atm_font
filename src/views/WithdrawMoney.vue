@@ -23,7 +23,7 @@
     <div class="btn b6 mbl" @click="WithdrawMoney(2000)">
       2,000
     </div>
-    <div class="btn b7 mbl" @click="WithdrawMoney(5000)">
+    <div class="btn b7 mbl" @click="WithdrawMoney(10000)">
       10,000
     </div>
 
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {doMoney} from "@/api/doMoney";
+// import {doMoney} from "@/api/do-money";
 
 export default {
   name: "WithdrawMoney",
@@ -46,24 +46,24 @@ export default {
       money: {
         balanceCard: '',
         idCard: 1627010720508389,
-        doType: 1
+        doType: 2
       },
-      doType: 1
     }
   },
   methods: {
     WithdrawMoney(inMoney) {
       this.money.balanceCard = inMoney
       let vm = this
-      // let url = vm.API.API_URL_DO_MONEY+"?doType=" + this.doType
-      // vm.$post(vm.API.API_URL_DO_MONEY, this.money)
-      doMoney(this.money).then(res => {
-        if (res.data.success) {
-          this.$message.success("取款成功");
-        } else {
-          this.$message.error(res.data.message);
-        }
-      })
+      this.money.idCard = sessionStorage.getItem('cardId')
+      vm.$post(vm.API.API_URL_DO_MONEY, this.money)
+          // doMoney(this.money)
+          .then(res => {
+            if (res.data.success) {
+              this.$message.success("取款成功");
+            } else {
+              this.$message.error(res.data.message);
+            }
+          })
     },
     toHome() {
       this.$router.push({

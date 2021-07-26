@@ -10,6 +10,7 @@ import axios from 'axios';
 import API from '@/utils/APIUtil';
 import fetch from '@/utils/fetch'
 import Storage from '@/utils/StorageUtil'
+// import Register from '@/utils/Register'
 
 //阻止启动生产消息
 Vue.config.productionTip = false

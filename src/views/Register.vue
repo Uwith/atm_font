@@ -4,12 +4,10 @@
     <p class="title">
       Register
     </p>
-    <el-input class="input1" v-model="username" prefix-icon="el-icon-user"></el-input>
     <el-input class="input2" v-model="password" prefix-icon="el-icon-key" show-password></el-input>
     <el-input class="input3" v-model="password_second" prefix-icon="el-icon-key" show-password></el-input>
-    <el-button class="but"> 登录</el-button>
+    <el-button class="but" @click="register()"> 登录</el-button>
   </div>
-
 </template>
 
 <script>
@@ -17,9 +15,30 @@ export default {
   name: "Register",
   data() {
     return {
-      username: '',
       password: '',
       password_second: '',
+    }
+  },
+  methods: {
+    register() {
+      if (this.password === this.password_second && this.password !== null && this.password_second !== null) {
+        let vm = this;
+        vm.$post(vm.API.API_URL_INSERT_CARD, {
+          idCustomer: sessionStorage.getItem('userId'),
+          passCard: this.password,
+        }).then(res => {
+          if (res.data.success) {
+            this.$message.success('注册成功');
+            this.$router.push({
+              name: "SelectCard",
+            })
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+      } else {
+        this.$message.error('密码格式错误');
+      }
     }
   }
 }
@@ -62,6 +81,6 @@ export default {
 
 .but {
   position: relative;
-  top: 6vh;
+  top: 7vh;
 }
 </style>

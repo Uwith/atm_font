@@ -7,7 +7,6 @@
     <el-input class="input1" v-model="user.userkeyCustomer" prefix-icon="el-icon-user"></el-input>
     <el-input class="input2" v-model="user.passkeyCustomer" prefix-icon="el-icon-key" show-password></el-input>
     <el-button class="but" @click="userLogin()"> 登录</el-button>
-    <el-button class="register" @click="toRegister()"> 注册</el-button>
   </div>
 
 </template>
@@ -21,7 +20,8 @@ export default {
       user: {
         userkeyCustomer: '',
         passkeyCustomer: ''
-      }
+      },
+      ids: {},
     }
   },
   methods: {
@@ -31,22 +31,23 @@ export default {
         userkeyCustomer: this.user.userkeyCustomer,
         passkeyCustomer: this.user.passkeyCustomer
       }).then(res => {
-        // Storage.Session.set('token',res.data.data)
         // 存入token
         sessionStorage.setItem('token', res.data.data)
-        console.log(sessionStorage.getItem('token'))
         if (res.data.success) {
+          // 从token中获取id
+          let tokenCut = sessionStorage.getItem('token').split('.')
+          // let tokenCut = sessionStorage.getItem('token').split('.')
+          this.ids = window.atob(tokenCut[0])
+          console.log(this.ids)
+          // 存入ID
+          sessionStorage.setItem('userId', JSON.parse(this.ids).userId)
           this.toLanguage()
         } else {
           this.$message.error(res.data.message);
         }
       })
     },
-    toRegister() {
-      this.$router.push({
-        name: 'Register'
-      })
-    },
+
     toLanguage() {
       this.$router.push({
         name: 'Language'

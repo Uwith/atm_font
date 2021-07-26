@@ -31,16 +31,22 @@ export default {
         idCard: 1627010720508389,
         doType: 1
       },
-      doType: 1,
+
     }
   },
   methods: {
     toSaveMoneyNext() {
-      if (this.money.cardBalance != 0) {
+      if (this.money.balanceCard === 0) {
+        this.$message.error("存入金额不能为空");
+      }
+      if (this.money.balanceCard % 100 !== 0) {
+        this.$message.error("请存入整百金额");
+      } else {
         let vm = this;
-        // let url = vm.API.API_URL_DO_MONEY+"?doType=" + this.doType;
+        this.money.idCard = sessionStorage.getItem('cardId')
         vm.$post(vm.API.API_URL_DO_MONEY, this.money).then(res => {
           if (res.data.success) {
+            this.$message.success('存入成功');
             this.$router.push({
               name: 'SaveMoneyNext',
             })
@@ -48,8 +54,6 @@ export default {
             this.$message.error(res.data.message);
           }
         })
-      } else {
-        this.$message.error("存入金额不能为空");
       }
     },
     toHome() {

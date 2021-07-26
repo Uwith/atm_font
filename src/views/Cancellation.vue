@@ -25,6 +25,7 @@ export default {
       })
     },
     toLogin() {
+      //todo 清空vuex
       this.$router.push({
         name: "Login",
       })

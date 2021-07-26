@@ -20,7 +20,7 @@ export default {
   methods: {
     Chinese() {
       this.$router.push({
-        name: "Home",
+        name: "SelectCard",
       })
     },
     English() {

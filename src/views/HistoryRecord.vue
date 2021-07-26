@@ -1,27 +1,30 @@
 <template>
   <!--历史记录-->
   <div class="history">
-    <div class="square">
-      <el-table
-          :data="tableData"
-          style="width: 100%"
-          :row-class-name="tableRowClassName">
-        <el-table-column
-            prop="data"
-            label="操作类型"
-            width="180">
-        </el-table-column>
-        <el-table-column
-            prop="name"
-            label="操作金额"
-            width="180">
-        </el-table-column>
-        <el-table-column
-            prop="date"
-            label="操作时间">
-        </el-table-column>
-      </el-table>
+    <div class="history-bg">
+      <div class="history-main">
+        <el-table
+            :data="tableData"
+            style="width: 100%"
+            :row-class-name="tableRowClassName">
+          <el-table-column
+              prop="data"
+              label="操作类型"
+              width="160vw">
+          </el-table-column>
+          <el-table-column
+              prop="name"
+              label="操作金额"
+              width="160vw">
+          </el-table-column>
+          <el-table-column
+              prop="date"
+              label="操作时间">
+          </el-table-column>
+        </el-table>
+      </div>
     </div>
+
     <!--    按钮-->
     <div class="btn b3 mbl" @click="lastPage()">
       上一页
@@ -38,7 +41,31 @@
 <script>
 export default {
   name: "HistoryRecord",
+  data() {
+    return {
+      // todo vuex 取
+      nowPage: '0',
+      tableData: [{
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+      }]
+    }
+  },
+  mounted() {
+    this.getHistory()
+  },
   methods: {
+    getHistory() {
+      let cardId = sessionStorage.getItem('cardId')
+      console.log(cardId)
+      let vm = this;
+      // vm.$post(vm.API.API_URL_CARD_LOG + "?cardId=" + '5221')
+      vm.$post(vm.API.API_URL_CARD_LOG + "?cardId=" + cardId)
+          .then(res => {
+            console.log(res.data)
+          })
+    },
     tableRowClassName({row, rowIndex}) {
       // todo 好像有问题
       if (this.tableData[rowIndex].doType === 0) {
@@ -61,54 +88,32 @@ export default {
       })
     }
   },
-  data() {
-    return {
-      //TODO vuex 取
-      nowPage: '0',
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-        doType: 0,
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }]
-    }
-  },
+
 }
 </script>
 
 <style>
+.history-bg {
+  /*大小*/
+  width: 58vw;
+  height: 54vh;
+  /*相对定位*/
+  position: relative;
+  top: 17vh;
+  left: 20vw;
+  /*  圆角*/
+  border-radius: 2%;
+
+  background-color: #fff;
+}
+
+.history-main {
+
+}
+
+.el-table__body {
+  background-color: #e20d0d;
+}
 
 .el-table .warning-row {
   background: oldlace;
@@ -120,27 +125,4 @@ export default {
 
 /* todo 背景透明 粘来的 再细看 */
 
-/*.el-table th, .el-table tr {*/
-/*  background-color: transparent!important;*/
-/*  -webkit-filter: opacity(30%); !* Chrome, Safari, Opera *!*/
-/*  filter: opacity(30%);*/
-/*}*/
-
-/*.el-table th{*/
-/*  color: #000000; !* 字体颜色 *!*/
-/*  font-size: 16px;*/
-/*  background-color: transparent !important;!* 背景透明 *!*/
-/*  border: 0;*/
-/*  height: 30px;*/
-/*  line-height: 30px;*/
-/*}*/
-/*.el-table tr, .el-table td {*/
-/*  color: #7d7575;*/
-/*  font-size: 12px;*/
-/*  background-color: transparent !important;!* 背景透明 *!*/
-/*  border: 0;*/
-/*  height: 30px;*/
-/*  line-height: 30px;*/
-/*}*/
-/* 上面两个背景色透明才能让table的背景透明少一个都不行 */
 </style>

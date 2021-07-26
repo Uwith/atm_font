@@ -57,27 +57,27 @@ function timestampToTime(timestamp) {
 }
 
 
-// request拦截器
-axios.interceptors.request.use(function (config) {
-// Do something before request is sent
-  if (config.url != '/login') {
-    if (localStorage.rbacToken) {
-      let token = JSON.parse(localStorage.rbacToken);
-// token失效
-//       if (token.expiredMills < new Date().getTime()) {
-//         localStorage.removeItem('rbacToken');
-// // token存在且未失效
-//       }
-      config.headers.token = token.token;
-    }
-  } else {
-    return;
-  }
-  return config;
-}, function (error) {
-// Do something with request error
-  return Promise.reject(error);
-});
+// // request拦截器
+// axios.interceptors.request.use(function (config) {
+// // Do something before request is sent
+//   if (config.url != '/login') {
+//     if (localStorage.rbacToken) {
+//       let token = JSON.parse(localStorage.rbacToken);
+// // token失效
+// //       if (token.expiredMills < new Date().getTime()) {
+// //         localStorage.removeItem('rbacToken');
+// // // token存在且未失效
+// //       }
+//       config.headers.token = token.token;
+//     }
+//   } else {
+//     return;
+//   }
+//   return config;
+// }, function (error) {
+// // Do something with request error
+//   return Promise.reject(error);
+// });
 
 // // Add a response interceptor
 // axios.interceptors.response.use(function (response) {
