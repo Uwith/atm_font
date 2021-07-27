@@ -40,7 +40,6 @@ export default {
       }
       let vm = this;
       this.login.numCard = sessionStorage.getItem('cardNum')
-      console.log(this.login)
       vm.$post(vm.API.API_URL_CARD_LOGIN, this.login).then(res => {
         if (res.data.success) {
           this.$router.push({

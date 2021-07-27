@@ -22,7 +22,6 @@ export default {
   data() {
     return {
       balance: '',
-      // todo vuex id
     }
   },
   mounted() {
@@ -34,11 +33,9 @@ export default {
       let cardId = sessionStorage.getItem('cardId')
       if (cardId) {
         vm.$post(vm.API.API_URL_BALANCER + "?cardId=" + cardId).then(res => {
-          console.log(res)
           this.balance = res.data.data;
         })
       }
-      // todo vuex id
     },
     toHome() {
       this.$router.push({

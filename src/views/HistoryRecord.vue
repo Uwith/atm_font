@@ -49,7 +49,6 @@ export default {
   name: "HistoryRecord",
   data() {
     return {
-      // todo vuex 取
       tableData: [],
       numPage: 8,
       currentPage: 1,
@@ -68,12 +67,10 @@ export default {
     },
     getHistory() {
       let cardId = sessionStorage.getItem('cardId')
-      console.log(cardId)
       let vm = this;
       vm.$post(vm.API.API_URL_CARD_LOG + "?cardId=" + cardId)
           .then(res => {
             this.tableData = res.data.data
-            console.log(this.tableData)
             this.tableData.forEach((item, index) => {
               if (item.typeCard === 1) {
                 item.typeCard = '存款'
@@ -83,16 +80,6 @@ export default {
             })
           })
     },
-    // tableRowClassName({row, rowIndex}) {
-    //   // todo 好像有问题
-    //   if (this.tableData[rowIndex].doType === 2) {
-    //     return 'warning-row';
-    //   }
-    //   if (this.tableData[rowIndex].doType === 1) {
-    //     return 'success-row';
-    //   }
-    //   return '';
-    // },
     toHome() {
       this.$router.push({
         name: 'Home',

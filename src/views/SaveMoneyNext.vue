@@ -3,14 +3,6 @@
   <div class="saveMoneyNext">
     <div class="square">
       <p class="title">是否继续存入</p>
-
-      <!--      todo-->
-
-      <!--      <p class="title">已存入金额</p>-->
-      <!--      <div class="main-num">-->
-      <!--        <p style="float:left;">¥</p>-->
-      <!--        <p class="" style="float:right;">{{ overMoney }}</p>-->
-      <!--      </div>-->
     </div>
     <div class="btn b3 mbl" @click="toHome()">
       结束放款
