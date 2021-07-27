@@ -38,8 +38,7 @@ export default {
     toSaveMoneyNext() {
       if (this.money.balanceCard === 0) {
         this.$message.error("存入金额不能为空");
-      }
-      if (this.money.balanceCard % 100 !== 0) {
+      } else if (this.money.balanceCard % 100 !== 0) {
         this.$message.error("请存入整百金额");
       } else {
         let vm = this;

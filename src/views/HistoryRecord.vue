@@ -4,34 +4,41 @@
     <div class="history-bg">
       <div class="history-main">
         <el-table
-            :data="tableData"
+            :data="tableData.slice((currentPage - 1) * numPage, currentPage * numPage)"
             style="width: 100%"
-            :row-class-name="tableRowClassName">
+        >
+          <!--          :row-class-name="tableRowClassName"-->
           <el-table-column
-              prop="data"
+              prop="typeCard"
               label="操作类型"
               width="160vw">
           </el-table-column>
           <el-table-column
-              prop="name"
+              prop="amountCard"
               label="操作金额"
               width="160vw">
           </el-table-column>
           <el-table-column
-              prop="date"
+              prop="operationTimeCard"
               label="操作时间">
           </el-table-column>
+
         </el-table>
+        <div class="block">
+          <el-pagination
+              :hide-on-single-page="value"
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page.sync="currentPage"
+              :page-size="numPage"
+              layout="total, prev, pager, next"
+              :total="this.tableData.length">
+          </el-pagination>
+        </div>
       </div>
     </div>
 
     <!--    按钮-->
-    <div class="btn b3 mbl" @click="lastPage()">
-      上一页
-    </div>
-    <div class="btn b7 mbl" @click="nextPage()">
-      下一页
-    </div>
     <div class="btn b8 mbl" @click="toHome()">
       返回
     </div>
@@ -44,44 +51,49 @@ export default {
   data() {
     return {
       // todo vuex 取
-      nowPage: '0',
-      tableData: [{
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }]
+      tableData: [],
+      numPage: 8,
+      currentPage: 1,
+      value: true,
     }
   },
   mounted() {
     this.getHistory()
   },
   methods: {
+    handleCurrentChange(val) {
+      this.currentPage = val;
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
     getHistory() {
       let cardId = sessionStorage.getItem('cardId')
       console.log(cardId)
       let vm = this;
-      // vm.$post(vm.API.API_URL_CARD_LOG + "?cardId=" + '5221')
       vm.$post(vm.API.API_URL_CARD_LOG + "?cardId=" + cardId)
           .then(res => {
-            console.log(res.data)
+            this.tableData = res.data.data
+            console.log(this.tableData)
+            this.tableData.forEach((item, index) => {
+              if (item.typeCard === 1) {
+                item.typeCard = '存款'
+              } else {
+                item.typeCard = '取款'
+              }
+            })
           })
     },
-    tableRowClassName({row, rowIndex}) {
-      // todo 好像有问题
-      if (this.tableData[rowIndex].doType === 0) {
-        return 'warning-row';
-      }
-      if (rowIndex === 3) {
-        return 'success-row';
-      }
-      return '';
-    },
-    lastPage() {
-
-    },
-    nextPage() {
-
-    },
+    // tableRowClassName({row, rowIndex}) {
+    //   // todo 好像有问题
+    //   if (this.tableData[rowIndex].doType === 2) {
+    //     return 'warning-row';
+    //   }
+    //   if (this.tableData[rowIndex].doType === 1) {
+    //     return 'success-row';
+    //   }
+    //   return '';
+    // },
     toHome() {
       this.$router.push({
         name: 'Home',
@@ -96,7 +108,7 @@ export default {
 .history-bg {
   /*大小*/
   width: 58vw;
-  height: 54vh;
+  height: 60vh;
   /*相对定位*/
   position: relative;
   top: 17vh;

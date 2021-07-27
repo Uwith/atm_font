@@ -38,7 +38,6 @@ export default {
           let tokenCut = sessionStorage.getItem('token').split('.')
           // let tokenCut = sessionStorage.getItem('token').split('.')
           this.ids = window.atob(tokenCut[0])
-          console.log(this.ids)
           // 存入ID
           sessionStorage.setItem('userId', JSON.parse(this.ids).userId)
           this.toLanguage()
@@ -47,11 +46,13 @@ export default {
         }
       })
     },
-
     toLanguage() {
       this.$router.push({
         name: 'Language'
       })
+    },
+    toRegular() {
+
     },
   }
 }
