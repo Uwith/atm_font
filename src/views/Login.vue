@@ -13,6 +13,8 @@
 
 <script>
 
+import {isPositive} from "@/utils/Regular";
+
 export default {
   name: "Login",
   data() {
@@ -26,6 +28,14 @@ export default {
   },
   methods: {
     userLogin() {
+      if (!isPositive(this.user.userkeyCustomer)) {
+        this.$message.error('用户名非法字符');
+        return false;
+      }
+      if (!isPositive(this.user.passkeyCustomer)) {
+        this.$message.error('密码非法字符');
+        return false;
+      }
       let vm = this;
       vm.$post(vm.API.API_URL_LOGIN, {
         userkeyCustomer: this.user.userkeyCustomer,
@@ -50,9 +60,6 @@ export default {
       this.$router.push({
         name: 'Language'
       })
-    },
-    toRegular() {
-
     },
   }
 }

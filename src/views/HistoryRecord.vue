@@ -7,7 +7,6 @@
             :data="tableData.slice((currentPage - 1) * numPage, currentPage * numPage)"
             style="width: 100%"
         >
-          <!--          :row-class-name="tableRowClassName"-->
           <el-table-column
               prop="typeCard"
               label="操作类型"

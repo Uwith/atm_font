@@ -22,6 +22,8 @@
 
 <script>
 
+import {isInFive} from "@/utils/Regular";
+
 export default {
   name: "SaveMoney",
   data() {
@@ -35,25 +37,33 @@ export default {
     }
   },
   methods: {
+
     toSaveMoneyNext() {
+      if (!isInFive(this.money.balanceCard)) {
+        this.$message.error('不能有非法字符');
+        return false;
+      }
       if (this.money.balanceCard === 0) {
         this.$message.error("存入金额不能为空");
-      } else if (this.money.balanceCard % 100 !== 0) {
-        this.$message.error("请存入整百金额");
-      } else {
-        let vm = this;
-        this.money.idCard = sessionStorage.getItem('cardId')
-        vm.$post(vm.API.API_URL_DO_MONEY, this.money).then(res => {
-          if (res.data.success) {
-            this.$message.success('存入成功');
-            this.$router.push({
-              name: 'SaveMoneyNext',
-            })
-          } else {
-            this.$message.error(res.data.message);
-          }
-        })
+        return false;
       }
+      if (this.money.balanceCard % 100 !== 0) {
+        console.log(this.money.balanceCard % 100)
+        this.$message.error("请存入整百金额");
+        return false;
+      }
+      let vm = this;
+      this.money.idCard = sessionStorage.getItem('cardId')
+      vm.$post(vm.API.API_URL_DO_MONEY, this.money).then(res => {
+        if (res.data.success) {
+          this.$message.success('存入成功');
+          this.$router.push({
+            name: 'SaveMoneyNext',
+          })
+        } else {
+          this.$message.error(res.data.message);
+        }
+      })
     },
     toHome() {
       this.$router.push({

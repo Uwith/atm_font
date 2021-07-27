@@ -10,7 +10,7 @@ import axios from 'axios';
 import API from '@/utils/APIUtil';
 import fetch from '@/utils/fetch'
 import Storage from '@/utils/StorageUtil'
-import Register from '@/utils/Register'
+import Regular from '@/utils/Regular'
 
 //阻止启动生产消息
 Vue.config.productionTip = false
@@ -24,7 +24,6 @@ Vue.prototype.API = API;
 extend.$post = fetch.post
 extend.$get = fetch.get
 extend.$form = fetch.form
-
 
 Vue.use(ElementUI)
 //路由拦截
@@ -48,6 +47,7 @@ new Vue({
   router,
   particles,
   store,
+  Regular,
   axios,
   render: h => h(App)
 }).$mount('#app')

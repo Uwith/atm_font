@@ -6,11 +6,13 @@
     </p>
     <el-input class="input2" v-model="password" prefix-icon="el-icon-key" show-password></el-input>
     <el-input class="input3" v-model="password_second" prefix-icon="el-icon-key" show-password></el-input>
-    <el-button class="but" @click="register()"> 登录</el-button>
+    <el-button class="but" @click="register()"> 注冊新卡</el-button>
   </div>
 </template>
 
 <script>
+import {isPositive, isSix} from "@/utils/Regular";
+
 export default {
   name: "Register",
   data() {
@@ -21,7 +23,19 @@ export default {
   },
   methods: {
     register() {
-      if (this.password === this.password_second && this.password !== null && this.password_second !== null) {
+      if (!this.password === this.password_second) {
+        this.$message.error('密码不一致');
+        return false;
+      }
+      if (!isPositive(this.password)) {
+        this.$message.error('密码非法字符');
+        return false;
+      }
+      if (!isSix(this.password)) {
+        this.$message.error('请输入六位纯数字');
+        return false;
+      }
+      if (this.password !== null && this.password_second !== null) {
         let vm = this;
         vm.$post(vm.API.API_URL_INSERT_CARD, {
           idCustomer: sessionStorage.getItem('userId'),

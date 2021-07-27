@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import {isNum, isSix} from "@/utils/Regular";
+
 export default {
   name: "CardLogin",
   data() {
@@ -25,8 +27,13 @@ export default {
   },
   methods: {
     cardLogin() {
-      if (this.password === null) {
+      if (this.login.passCard === '') {
         this.$message.error('密码不可为空');
+        return false;
+      }
+      if (!isSix(this.login.passCard)) {
+        this.$message.error('请输入六位纯数字');
+        return false;
       }
       let vm = this;
       this.login.numCard = sessionStorage.getItem('cardNum')

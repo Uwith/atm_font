@@ -8,9 +8,9 @@
     <div class="btn b6 mbl" @click="Chinese()">
       中文
     </div>
-    <div class="btn b7 mbl" @click="English()">
-      English
-    </div>
+    <!--    <div class="btn b7 mbl" @click="English()">-->
+    <!--      English-->
+    <!--    </div>-->
   </div>
 </template>
 

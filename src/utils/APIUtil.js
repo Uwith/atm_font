@@ -1,7 +1,7 @@
 ﻿// var serverBase = 'http://127.0.0.1:8081/'
-var serverBase = 'http://127.0.0.1:8081/'
+let serverBase = 'http://10.135.2.9:8081/';
 // var v1 = serverBase + '/api/v1/'
-var v1 = serverBase + 'atm/'
+let v1 = serverBase + 'atm/';
 export default {
   BASE_SERVER_URL: serverBase,
   /**

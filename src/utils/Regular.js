@@ -1,29 +1,34 @@
 // 判断是否为 数字
-function isNum(numValue) {
+export function isNum(numValue) {
   let numPattern = /^\d*$/; //数字的正则表达式
   let result = numPattern.test(numValue);
   return result;
 }
 
 // 判断是否为 六位
-function isSix(numValue) {
-  let numPattern = /^\d{n}$/; //数字的正则表达式
+export function isSix(numValue) {
+  let numPattern = /^\d{6}$/; //数字的正则表达式
   let result = numPattern.test(numValue);
   return result;
 }
 
 // 判断是否为 非零的正整数
-function isSix(numValue) {
+export function isPositive(numValue) {
   let numPattern = /^\+?[1-9][0-9]*$/; //数字的正则表达式
   let result = numPattern.test(numValue);
   return result;
 }
 
-//判断输入内容是否为空
-function IsNull() {
-  let str = document.getElementById('str').value.trim();
-  if (str.length === 0) {
-    alert('对不起，文本框不能为空或者为空格!');//请将“文本框”改成你需要验证的属性名称!
-  }
+// 判断是否为 五位以内
+export function isInFive(numValue) {
+  let numPattern = /^\d{0,6}$/; //数字的正则表达式
+  let result = numPattern.test(numValue);
+  return result;
 }
 
+// export function isInFive(numValue) {
+//   //"^[0-9]{1-5}$"
+//   let numPattern = /^[0-9]{1-5}$/; //数字的正则表达式
+//   let result = numPattern.test(numValue);
+//   return result;
+// }
