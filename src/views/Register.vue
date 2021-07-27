@@ -35,6 +35,12 @@ export default {
         this.$message.error('请输入六位纯数字');
         return false;
       }
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
       if (this.password !== null && this.password_second !== null) {
         let vm = this;
         vm.$post(vm.API.API_URL_INSERT_CARD, {
@@ -43,11 +49,13 @@ export default {
         }).then(res => {
           if (res.data.success) {
             this.$message.success('注册成功');
+            loading.close();
             this.$router.push({
               name: "SelectCard",
             })
           } else {
             this.$message.error(res.data.message);
+            loading.close();
           }
         })
       } else {

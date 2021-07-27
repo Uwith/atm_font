@@ -7,7 +7,6 @@
         <el-input placeholder="请输入要存款金额" v-model="money.balanceCard">
           <template slot="prepend">¥</template>
         </el-input>
-
       </div>
       <p>请放入不超过一万元现金</p>
     </div>
@@ -33,7 +32,12 @@ export default {
         idCard: 1627010720508389,
         doType: 1
       },
-
+      fullscreenLoading: false,
+      options: {
+        fullscreen: true,
+        lock: false,
+        // background: ,
+      }
     }
   },
   methods: {
@@ -52,6 +56,13 @@ export default {
         this.$message.error("请存入整百金额");
         return false;
       }
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
+      // let loadingInstance = this.$loading(options);
       let vm = this;
       this.money.idCard = sessionStorage.getItem('cardId')
       vm.$post(vm.API.API_URL_DO_MONEY, this.money).then(res => {
@@ -60,7 +71,9 @@ export default {
           this.$router.push({
             name: 'SaveMoneyNext',
           })
+          loading.close();
         } else {
+          loading.close();
           this.$message.error(res.data.message);
         }
       })

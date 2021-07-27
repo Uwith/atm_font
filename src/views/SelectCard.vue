@@ -3,7 +3,7 @@
     <div class="square">
       <p class="title">选卡</p>
       <el-card v-for="card in cardInfo" class="box-card">
-        <div :key="card" class="text item" @click="select(card.id,card.numCard)">
+        <div :key="card.id" class="text item" @click="select(card.id,card.numCard)">
           {{ card.numCard }}
         </div>
       </el-card>
@@ -30,7 +30,6 @@ export default {
     getCard() {
       // vuex取出userID
       let userId = sessionStorage.getItem('userId')
-      console.log('选卡页获取到userId ' + userId)
       let vm = this;
       vm.$post(vm.API.API_URL_CARD_INFO + "?userId=" + userId)
           .then(res => {

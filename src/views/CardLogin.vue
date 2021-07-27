@@ -9,11 +9,14 @@
     <div class="btn b7 mbl" @click="cardLogin()">
       登录
     </div>
+    <div class="btn b3 mbl" @click="toSelectCard()">
+      返回
+    </div>
   </div>
 </template>
 
 <script>
-import {isNum, isSix} from "@/utils/Regular";
+import {isSix} from "@/utils/Regular";
 
 export default {
   name: "CardLogin",
@@ -46,6 +49,11 @@ export default {
         } else {
           this.$message.error(res.data.message);
         }
+      })
+    },
+    toSelectCard() {
+      this.$router.push({
+        name: 'SelectCard',
       })
     }
   }

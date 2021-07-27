@@ -21,14 +21,7 @@ export function isPositive(numValue) {
 
 // 判断是否为 五位以内
 export function isInFive(numValue) {
-  let numPattern = /^\d{0,6}$/; //数字的正则表达式
+  let numPattern = /^\d{0,5}$/; //数字的正则表达式
   let result = numPattern.test(numValue);
   return result;
 }
-
-// export function isInFive(numValue) {
-//   //"^[0-9]{1-5}$"
-//   let numPattern = /^[0-9]{1-5}$/; //数字的正则表达式
-//   let result = numPattern.test(numValue);
-//   return result;
-// }
