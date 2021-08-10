@@ -5,7 +5,7 @@
     <div class="square">
       <p class="title">请选择语言</p>
     </div>
-    <div class="btn b6 mbl" @click="Chinese()">
+    <div class="btn b7 mbl" @click="Chinese()">
       中文
     </div>
     <!--    <div class="btn b7 mbl" @click="English()">-->

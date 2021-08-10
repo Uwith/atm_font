@@ -98,7 +98,7 @@ export default {
 .but {
   position: relative;
   top: 6vh;
-  left: 4vw;
+  left: 9vw;
 }
 
 .register {

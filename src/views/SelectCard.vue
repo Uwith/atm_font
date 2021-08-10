@@ -11,6 +11,9 @@
     <div class="btn b7 mbl" @click="toRegister()">
       注册新卡
     </div>
+    <div class="btn b3 mbl" @click="toLanguage()">
+      返回
+    </div>
   </div>
 </template>
 
@@ -46,6 +49,11 @@ export default {
       sessionStorage.setItem('cardNum', numCard);
       this.$router.push({
         name: 'CardLogin',
+      })
+    },
+    toLanguage() {
+      this.$router.push({
+        name: 'Language'
       })
     },
     toRegister() {

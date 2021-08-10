@@ -53,6 +53,12 @@ export default {
   methods: {
     WithdrawMoney(inMoney) {
       this.money.balanceCard = inMoney
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
       let vm = this
       this.money.idCard = sessionStorage.getItem('cardId')
       vm.$post(vm.API.API_URL_DO_MONEY, this.money)
@@ -60,8 +66,10 @@ export default {
           .then(res => {
             if (res.data.success) {
               this.$message.success("取款成功");
+              loading.close();
             } else {
               this.$message.error(res.data.message);
+              loading.close();
             }
           })
     },
