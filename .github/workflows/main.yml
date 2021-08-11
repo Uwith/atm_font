@@ -15,8 +15,15 @@ jobs:
           npm install
           npm run build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+      #      - name: Deploy 🚀
+      #        uses: JamesIves/github-pages-deploy-action@4.1.4
+      #        with:
+      #          branch: gh-pages # The branch the action should deploy to.
+      #          folder: build # The folder the action should deploy.
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3 # 写好的action
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: build # The folder the action should deploy.
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} #自定义生成key 生成步骤在下面
+          BRANCH: gh-pages #操作应部署到的分支。
+          FOLDER: dist #操作应部署的文件夹。
