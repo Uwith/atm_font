@@ -1,7 +1,7 @@
 {
   "name": "atm_front",
   "version": "0.1.0",
-  "homepage": "https://Uwith.github.io/atm_font",
+  "homepage": "https://Uwith.github.io/atm_front",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
