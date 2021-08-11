@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["about"],{dda8:function(e,r,t){"use strict";t.r(r);var n=function(){var e=this,r=e.$createElement,t=e._self._c||r;return t("div",{staticClass:"error"})},a=[],s={name:"Error"},o=s,c=t("2877"),u=Object(c["a"])(o,n,a,!1,null,"7e21ef4d",null);r["default"]=u.exports}}]);
+//# sourceMappingURL=about.5dd28ed2.js.map
