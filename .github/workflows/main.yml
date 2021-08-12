@@ -21,7 +21,7 @@ jobs:
       #          branch: gh-pages # The branch the action should deploy to.
       #          folder: build # The folder the action should deploy.
 
-      - name: Deploy
+      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3 # 写好的action
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} #自定义生成key 生成步骤在下面
